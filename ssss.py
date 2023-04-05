@@ -78,10 +78,10 @@ for proxy_url in proxies:
         result = ''.join(match_results)
         # 将结果转换为字符串类型
         result_str = str(result)
-        # 输出结果
-        print(result_str)
-
-        pushMessage(result_str)
+        if result_str == '':
+            pushMessage('签到成功大括号'+response.text+'大括号')
+        else:
+            pushMessage(result_str)
         break
     except Exception as e:
         print(f"代理 {proxy_url} 出现异常：{e}")
