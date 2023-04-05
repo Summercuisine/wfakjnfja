@@ -4,23 +4,29 @@ on:
   push:
   schedule:
     - cron: '0 0 * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
+
     - name: Install dependencies
       run: |
         pip install requests
         pip install jsonpath-rw-ext
         pip install beautifulsoup4
         pip install soupsieve
+
     - name: Run dailipaqu.py
       run: python dailipaqu.py
+
     - name: Run ssss.py
       run: python ssss.py
