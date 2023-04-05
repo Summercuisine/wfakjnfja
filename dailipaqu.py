@@ -2,6 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import threading
 import json
+def pushMessage(zhu,NEIR):
+
+    url = 'http://www.pushplus.plus/send?token=a30fcda032c2411aa530f86ca8368af6&title='+zhu+'&content=代理'+NEIR+'代理&template=html'
+    print("推送内容", url)
+    resp = requests.post(url)
+    if resp.json()["code"] == 200:
+        print('推送消息提醒成功！')
+    else:
+        print('推送消息提醒失败！')
 
 # 构造请求 URL 和 Headers
 url_template = 'https://www.kuaidaili.com/free/intr/{}/'
@@ -88,7 +97,7 @@ def crawl_proxy(page_num):
 lock = threading.Lock()
 
 # 爬取前 10 页 IP 代理服务器列表，并验证其可用性
-for i in range(1, 11):
+for i in range(1, 6):
     print('正在爬取第 {} 页...'.format(i))
     crawl_proxy(i)
 
@@ -97,3 +106,4 @@ with open('proxy_list.json', 'w') as f:
     json.dump(proxy_list, f)
 
 print('所有代理服务器验证完毕，可用的代理服务器数量为：', len(proxy_list))
+pushMessage('代理获取成功', '所有代理服务器验证完毕，可用的代理服务器数量为：'+str(len(proxy_list)))
