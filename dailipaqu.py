@@ -97,7 +97,7 @@ def crawl_proxy(page_num):
 lock = threading.Lock()
 
 # 爬取前 10 页 IP 代理服务器列表，并验证其可用性
-for i in range(1, 11):
+for i in range(1, 5):
     print('正在爬取第 {} 页...'.format(i))
     crawl_proxy(i)
 
