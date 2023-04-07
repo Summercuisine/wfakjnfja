@@ -30,3 +30,6 @@ jobs:
 
     - name: Run ssss.py
       run: python ssss.py
+      
+    - name: Run tuisonces.py
+      run: python tuisonces.py
